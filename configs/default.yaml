@@ -1,0 +1,48 @@
+# General
+seed: 42
+num_workers: 4
+log_every: 1000
+
+# Data
+dataset: clothing2018
+max_items: 200000
+max_reviews_per_item: 50
+max_reviews_per_user: 200
+min_interactions_per_user: 5
+min_interactions_per_item: 5
+
+# Text
+embedding_model: sentence-transformers/all-MiniLM-L6-v2
+embedding_batch_size: 64
+max_tokens: 128
+
+# Dimensionality reduction for item features passed to LightFM
+svd_n_components: 128
+
+# LightFM
+use_lightfm: true
+lightfm:
+  no_components: 128
+  loss: warp
+  learning_rate: 0.05
+  item_alpha: 1e-6
+  user_alpha: 1e-6
+  epochs: 20
+  num_threads: 8
+  early_stop_patience: 3
+
+# Retrieval
+use_faiss: true
+knn_k: 50
+
+# Train / Eval
+test_holdout: last
+k_metrics: 10
+val_users: 5000
+sample_users_eval: 20000
+
+# App
+top_k_recommendations: 20
+blend_weights:
+  cf: 0.6
+  cb: 0.4
